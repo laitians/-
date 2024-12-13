@@ -11,7 +11,7 @@
         <div class="logo">
             <img src="../resource/img/rblogo.png" alt="logo">
         </div>
-        <div class="page">
+        <div id="register" class="page">
             <div class="container">
                 <div class="left">
                     <div class="login">注册</div>
@@ -35,17 +35,64 @@
                         c 0,0 -20,0.99604 -20,25 0,24.00396 20,25 20,25 h 10" />
                     </svg>
                     <div class="form">
-                        <label for="email">邮箱</label>
-                        <input type="email" id="email">
+                        <label for="account">邮箱</label>
+                        <input v-model="account" type="account" id="account">
                         <label for="password">密码</label>
-                        <input type="password" id="password">
+                        <input v-model="password" type="password" id="password">
                         <label for="confirm_password">确认密码</label>
-                        <input type="password" id="confirm_password">
-                        <input type="submit" id="submit" value="注册">
+                        <input v-model="confirm_password" type="password" id="confirm_password">
+                        <input @click.stop="register" type="submit" id="submit" value="注册">
                     </div>
                 </div>
             </div>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script>
+            new Vue({
+                el: '#register',
+                data: {
+                    account: '',
+                    password: '',
+                    confirm_password: ''
+                },
+                methods: {
+                    register: function () {
+                        if (this.account === '' || this.password === '' || this.confirm_password === '') {
+                            alert('邮箱和密码不能为空！')
+                            return
+                        }
+                        else if (this.password !== this.confirm_password) {
+                            alert('两次密码不一致！')
+                            return
+                        }
+                        let data = {
+                            account: this.account,
+                            password: this.password
+                        }
+                        fetch('https://api.apiopen.top/api/register', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(data)
+                        }).then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                alert('注册成功！')
+                                console.log(object);
+                                sessionStorage.setItem('isLoggedIn', JSON.stringify(true));
+                                sessionStorage.setItem('account', this.account);
+                                location.href = './index.html'
+                            } else {
+                                alert('注册失败！')
+                            }
+                        }).catch(error => {
+                            console.log(error)
+                        })
+                    }
+                }
+            })
+        </script>
         <script src="../../node_modules/animejs/lib/anime.min.js"></script>
         <script type="text/javascript" src="../js/register.js"></script>
     </body>

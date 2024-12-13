@@ -11,8 +11,7 @@
         <div class="logo">
             <img src="../resource/img/rblogo.png" alt="logo">
         </div>
-        <div class="page">
-        <div class="page">
+        <div id="login" class="page">
             <div class="container">
                 <div class="left">
                     <div class="login">登入</div>
@@ -36,12 +35,12 @@
                             c 0,0 -20,1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143" />
                     </svg>
                     <div class="form">
-                        <label for="email">邮箱</label>
-                        <input type="email" id="email">
+                        <label for="account">邮箱</label>
+                        <input v-model="account" type="account" id="account">
                         <label for="password">密码</label>
-                        <input type="password" id="password">
-                        <input type="submit" id="submit" value="登入">
-                        <input style="height: 15px; position: absolute; margin-left: -290px; margin-top: 93px; cursor: pointer;" type="checkbox" id="rememberme">
+                        <input v-model="password" type="password" id="password">
+                        <input type="button" id="submit" value="登入" @click="login">
+                        <input style="height: 15px; position: absolute; margin-left: -290px; margin-top: 93px; cursor: pointer;" type="checkbox" id="rememberme" v-model="rememberMe">
                         <label for="remember">记住密码</label>
                         <label for="register" type="button" style="display: block; margin-top: -21px; text-align: center; cursor: pointer; margin-right: -140px;">还没有账号？<a style="margin-left: 5px; color: #007bff; text-decoration: none;" href="register.html">注册</a></label>
                     </div>
@@ -50,5 +49,48 @@
         </div>
         <script src="../../node_modules/animejs/lib/anime.min.js"></script>
         <script type="module" src="../js/login.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script>
+            new Vue({
+                el: '#login',
+                data: {
+                    account: '',
+                    password: '',
+                    rememberMe: false
+                },
+                methods: {
+                    login: function () {
+                        if (this.account === '' || this.password === '') {
+                            alert('邮箱或密码不能为空！')
+                            return
+                        }
+                        let data = {
+                            account: this.account,
+                            password: this.password,
+                            rememberMe: this.rememberMe,
+                            isLoggedIn:'true'
+                        }
+                        fetch('https://api.apiopen.top/api/login', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(data)
+                        }).then(response => {
+                            if (response.ok) {
+                                alert('登入成功！')
+                                sessionStorage.setItem('isLoggedIn', JSON.stringify(true));
+                                sessionStorage.setItem('account', this.account);
+                                location.href = './index.html'
+                            } else {
+                                alert('登入失败！')
+                            }
+                        }).catch(error => {
+                            console.log(error)
+                        })
+                    }
+                }
+            })
+        </script>
     </body>
 </html>

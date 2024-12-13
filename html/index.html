@@ -9,7 +9,7 @@
 </head>
 <body>
     <!-- 导航栏 -->
-    <div class="header">
+    <div id="app" class="header">
         <div class="logo">
             <img src="../resource/img/rblogo.png" alt="logo">
         </div>
@@ -19,17 +19,48 @@
                 <li><a href="#group" class="nav-link" data-target="#group">关于我们</a></li>
                 <li><a href="#contact" class="nav-link" data-target="#contact">联系</a></li>
                 <li><a href="#college" class="nav-link" data-target="#college">学院信息</a></li>
-                <li><a href="">更多</a>
+                <li><a @click.prevent href="">更多</a>
                     <ul class="submenu">
-                        <li><div style="display: inline; margin-right: 10px;"><a href="http://voc.yhj.com.cn/cover/index/nid/1.html" target="_blank">学院官网</a></div></li>
-                        <li><div style="display: inline; margin-right: 10px;"><a href="../welcome.html" target="_blank">欢迎页面</a></div></li>
-                        <li><div style="display: inline;"><a href="../html/Asset.html" target="_blank">素材声明</a></div></li>
+                        <li>
+                            <div style="display: inline; margin-right: 10px;">
+                                <a href="http://voc.yhj.com.cn/cover/index/nid/1.html" target="_blank">
+                                    学院官网
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div style="display: inline; margin-right: 10px;">
+                                <a href="../welcome.html" target="_blank">
+                                    欢迎页面
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div style="display: inline;">
+                                <a href="../html/Asset.html" target="_blank">
+                                    素材声明
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div style="display: inline;">
+                                <a  id="login-limit" @click.prevent="checkLogin($event, './otherwork/o_index.html')" href="./otherwork/o_index.html" target="_blank">
+                                    其他案例
+                                </a>
+                            </div>
+                        </li>
                     </ul>
                 </li>
             </ul>
         </div>
-        <div class="login-btn">
-            <a href="login.html">登录</a>
+        <div v-if="!isLoggedIn" class="login-btn">
+            <a @click.prevent="login" href="./login.html">登录</a>
+        </div>
+        <div v-else class="User-img">
+            <a href="./User.html">
+                <img style="height: 50px;" src="../resource/img/OIP-C.png" alt="用户头像">
+            </a>
+            <p> {{ account }}</p>
         </div>
     </div>  
     <!-- 导航栏 -->
@@ -144,5 +175,34 @@
     <script src="../../node_modules/gsap/dist/gsap.min.js"></script>
     <script src="../../node_modules/gsap/dist/ScrollTrigger.min.js"></script>
     <script type="text/javascript" src="../js/home.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                isLoggedIn: JSON.parse(sessionStorage.getItem('isLoggedIn')) || false,
+                account: sessionStorage.getItem('account') || '用户名'
+            },
+            methods: {
+                login: function () {
+                    if (!this.isLoggedIn) {
+                        location.href = './login.html';
+                    }
+                },
+                checkLogin: function (event, url) {
+                    if (this.isLoggedIn) {
+                        window.location.href = url;
+                    } else {
+                        event.preventDefault(); 
+                        alert('请先登录');
+                    }
+                }
+            },
+            created: function () {
+                this.isLoggedIn = JSON.parse(sessionStorage.getItem('isLoggedIn')) || false;
+                this.account = sessionStorage.getItem('account') || '用户名';
+            }
+        });
+    </script>
 </body>
 </html>

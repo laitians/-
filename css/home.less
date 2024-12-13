@@ -144,6 +144,34 @@ img, svg, video, canvas, audio, iframe, embed, object {
             }
         }
     }
+    .User-img{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 50%;
+        right: 80px;
+        transform: translate(0, -50%);
+        color: #111b29;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        a{
+            color: #111b29;
+            text-decoration: none;
+            p{
+                font-size: 10px;
+                color: #111b29;
+            }
+        }
+        &:hover{
+            a{
+                color: #00BFFF;
+            }
+        }
+    }
 }
 // 导航栏结束
 

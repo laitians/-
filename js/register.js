@@ -1,5 +1,5 @@
 var current = null;
-document.querySelector('#email').addEventListener('focus', function(e) {
+document.querySelector('#account').addEventListener('focus', function(e) {
   if (current) current.pause();
   current = anime({
     targets: 'path',
@@ -63,11 +63,3 @@ document.querySelector('#submit').addEventListener('focus', function(e) {
     }
   });
 });
-const loginbutton = document.getElementById('submit');
-loginbutton.addEventListener('click', function() {
-  console.log('login');
-  setTimeout(function() {
-    alert('注册成功，即将跳转到登录页面');
-    window.location.href = 'login.html';
-  }, 500);
-})

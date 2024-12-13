@@ -1,0 +1,176 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+body{
+  min-width: 1200px;
+}
+
+.kv{
+  width: 100%;
+  height: 100vh;
+  min-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.kv .video-bg{
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  height: 100vh;
+  min-width: 800px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.kv .video-bg video{
+  min-width: 1000px;
+  width: 100%;
+  transform: translateY(-50px);
+}
+
+.kv .video-bg .logo{
+  position: absolute;
+  left: 29px;
+  top: 35px;
+  z-index: 1;
+}
+
+.kv .video-bg .logo img{
+  width: 48%;
+}
+
+.kv .video-bg .btn-group .btn-jump{
+  position: absolute;
+  bottom: 1.6rem;
+  left: 45%;
+  margin-left: -1.89rem;
+  display: block;
+  width: 16rem;
+  height: 20rem;
+  background: url(../img/进入官网.png) no-repeat 50% / 100%;
+  cursor: pointer;
+}
+
+.kv .video-bg .btn-group .btn-age{
+  position: absolute;
+  bottom: .6rem;
+  left: .6rem;
+  right: -1rem;
+  width: 5rem;
+  height: 7rem;
+  background: url(../img/12+.png) no-repeat 50% / 100%;
+  cursor: pointer;
+}
+
+.footer{
+  display: flex;
+  width: 40%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 2em;
+  margin: .67em 0;
+}
+
+.split{
+  color: #757575; 
+  font-size: 1rem;
+}
+
+.footer .imo{
+  width: 7rem;
+  height: 2.5rem;
+  margin: 2rem;
+}
+
+.footer .imt{
+  width: 5rem;
+  height: 5rem;
+  margin: 2rem;
+}
+
+.footera{
+  line-height: 24px;
+  width: 80%;
+  height: 90rem;
+  margin-top: 40px;
+}
+
+.footera a{
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.footera .topxieyi span{
+  color: #ffffff;
+}
+
+.footera .topxieyi a:hover{
+  text-decoration: underline;
+}
+
+.footera p{
+  line-height: 1.5;
+}
+
+.topxieyi{
+  margin-bottom: 20px;
+}
+
+.jiankang{
+  font-size: .9rem;
+  color: #a3a3a3;
+  margin-right: 5px;
+}
+
+.jiankang a{
+  color: #a3a3a3;
+}
+
+.jiankang a:hover{
+  text-decoration: underline;
+  color: #ffffff;
+}
+
+.btm-ig{
+  display: flex;
+  margin-top: -40px;
+  margin-left: -28px;
+  padding: 20px;
+}
+
+.btm-ig .ig1{
+  background: url(../img/fooret/shiming_1575020038_4113.png) no-repeat 50% 100%;
+  width: 8rem;
+  height: 5rem;
+}
+.btm-ig .ig2{
+  background: url(../img/fooret/jubao_1575020039_5071.png) no-repeat 50% 100%;
+  width: 8rem;
+  height: 5rem;
+}
+.btm-ig .ig3{
+  background: url(../img/fooret/youhai_1589857356_1416.png) no-repeat 50% 100%;
+  width: 8rem;
+  height: 5rem;
+}
+.btm-ig .ig4{
+  background: url(../img/fooret/e110_1575020039_7486.png) no-repeat 50% 100%;
+  width: 8rem;
+  height: 5rem;
+}
+.btm-ig .ig5{
+  background: url(../img/fooret/zhizhao_1575020039_4362.png) no-repeat 50% 100%;
+  width: 8rem;
+  height: 5rem;
+}

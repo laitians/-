@@ -1,5 +1,7 @@
 // 首页动画效果
 document.addEventListener('DOMContentLoaded', function() {
+    //未登入限制
+    //未登入限制
     const headers = document.querySelectorAll('h2');
 
     headers.forEach(header => {
